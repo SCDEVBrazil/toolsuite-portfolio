@@ -1,1 +1,6 @@
 .vercel
+
+# Node.js and Next.js
+node_modules/
+.next/
+package-lock.json

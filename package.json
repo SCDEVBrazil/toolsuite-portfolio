@@ -1,0 +1,27 @@
+{
+  "name": "toolsuite-portfolio",
+  "version": "1.0.0",
+  "description": "A comprehensive system for building and managing 52+ automated utility websites with AI-powered optimization and monitoring.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "next": "^15.3.4",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "eslint": "^9.29.0",
+    "eslint-config-next": "^15.3.4",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.0"
+  }
+}
