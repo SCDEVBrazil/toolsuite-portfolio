@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://toolsuite.info/sitemap.xml
+
+# Allow all tools to be crawled
+Allow: /password/
+Allow: /
+
+# Disallow admin or private areas (for future use)
+Disallow: /admin/
+Disallow: /api/private/
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
