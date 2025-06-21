@@ -1,0 +1,14 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/password",
+      "has": [
+        {
+          "type": "host",
+          "value": "password.toolsuite.info"
+        }
+      ]
+    }
+  ]
+}
