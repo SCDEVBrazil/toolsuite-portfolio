@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { gtag } from '../_app';
+import { gtag } from '../pages/_app';
 
 // AdSense Component - HIDDEN until Week 7 implementation
 const GoogleAdUnit = ({ size, placement, responsive = false }) => {
