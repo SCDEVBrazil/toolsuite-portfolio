@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
 
@@ -47,8 +49,29 @@ const GoogleAdUnit = ({ size, placement, responsive = false }) => {
 };
 
 export default function Home() {
+  const router = useRouter();
+  
   // Check if ads are enabled to determine layout
   const ADSENSE_ENABLED = false; // Set to true when implementing AdSense in Week 7
+  
+  // Detect subdomain and redirect accordingly
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const hostname = window.location.hostname;
+      
+      // If visiting password.toolsuite.info, redirect to /password
+      if (hostname === 'password.toolsuite.info') {
+        router.replace('/password');
+        return;
+      }
+      
+      // Add other subdomain redirects here as we build more tools
+      // if (hostname === 'bmi.toolsuite.info') {
+      //   router.replace('/bmi');
+      //   return;
+      // }
+    }
+  }, [router]);
   
   return (
     <>
