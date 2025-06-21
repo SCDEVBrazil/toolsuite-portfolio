@@ -223,8 +223,8 @@ export default function Home() {
                       
                       {/* Password Generator - Live Tool */}
                       <div className="tool-card animate-fade-in-delayed group">
-                        <Link 
-                          href="https://password.toolsuite.info"
+                        <a 
+                          href="/password"
                           className="block bg-gradient-to-br from-blue-50 to-indigo-100 border-2 border-blue-200 rounded-2xl p-6 shadow-lg shadow-blue-500/10 hover:shadow-xl hover:shadow-blue-500/20 transform hover:scale-105 transition-all duration-300"
                         >
                           <div className="flex items-center space-x-4 mb-4">
@@ -246,7 +246,7 @@ export default function Home() {
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                             </svg>
                           </div>
-                        </Link>
+                        </a>
                       </div>
 
                       {/* Coming Soon Tools */}
@@ -354,16 +354,12 @@ export default function Home() {
                           <p className="text-xl text-blue-700 mb-8 max-w-2xl mx-auto">
                             Try our password generator and experience the security and convenience of ToolSuite.
                           </p>
-                          <Link 
-                            href="https://password.toolsuite.info"
-                            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-xl shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-500/50"
+                          <a 
+                            href="/password"
+                            className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-200"
                           >
-                            <span className="mr-3">🚀</span>
                             Try Password Generator
-                            <svg className="ml-3 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
-                          </Link>
+                          </a>
                         </div>
                       </div>
                     </div>
