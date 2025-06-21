@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { gtag } from '../_app';
 
 // AdSense Component - HIDDEN until Week 7 implementation
 const GoogleAdUnit = ({ size, placement, responsive = false }) => {
@@ -79,69 +80,98 @@ export default function PasswordGenerator() {
   const symbols = '!@#$%^&*()_+-=[]{}|;:,.<>?';
   const ambiguous = '0Ol1';
 
-  // Enhanced generate password function with animation
-  const generatePassword = async () => {
-    setIsGenerating(true);
-    
-    // Brief delay for animation effect
-    await new Promise(resolve => setTimeout(resolve, 300));
-    
-    let charset = '';
-    
-    if (includeUppercase) charset += uppercase;
-    if (includeLowercase) charset += lowercase;
-    if (includeNumbers) charset += numbers;
-    if (includeSymbols) charset += symbols;
-    
-    if (excludeAmbiguous) {
-      charset = charset.split('').filter(char => !ambiguous.includes(char)).join('');
-    }
-    
-    if (charset === '') {
-      setFeedback('Please select at least one character type!');
-      setTimeout(() => setFeedback(''), 3000);
-      setIsGenerating(false);
-      return;
-    }
-    
-    let result = '';
-    const array = new Uint32Array(length);
-    crypto.getRandomValues(array);
-    
-    for (let i = 0; i < length; i++) {
-      result += charset[array[i] % charset.length];
-    }
-    
-    setPassword(result);
+  // Enhanced generate password function with animation and GA4 tracking
+const generatePassword = async () => {
+  setIsGenerating(true);
+  
+  // Brief delay for animation effect
+  await new Promise(resolve => setTimeout(resolve, 300));
+  
+  let charset = '';
+  
+  if (includeUppercase) charset += uppercase;
+  if (includeLowercase) charset += lowercase;
+  if (includeNumbers) charset += numbers;
+  if (includeSymbols) charset += symbols;
+  
+  if (excludeAmbiguous) {
+    charset = charset.split('').filter(char => !ambiguous.includes(char)).join('');
+  }
+  
+  if (charset === '') {
+    setFeedback('Please select at least one character type!');
+    setTimeout(() => setFeedback(''), 3000);
     setIsGenerating(false);
-    setFeedback('Password generated successfully! 🎉');
-    setTimeout(() => setFeedback(''), 2000);
-  };
+    return;
+  }
+  
+  let result = '';
+  const array = new Uint32Array(length);
+  crypto.getRandomValues(array);
+  
+  for (let i = 0; i < length; i++) {
+    result += charset[array[i] % charset.length];
+  }
+  
+  setPassword(result);
+  setIsGenerating(false);
+  setFeedback('Password generated successfully! 🎉');
+  setTimeout(() => setFeedback(''), 2000);
+  
+  // Track password generation event in Google Analytics
+  gtag({
+    action: 'generate_password',
+    category: 'tool_usage',
+    label: `length_${length}_types_${[
+      includeUppercase && 'upper',
+      includeLowercase && 'lower', 
+      includeNumbers && 'numbers',
+      includeSymbols && 'symbols'
+    ].filter(Boolean).join('_')}`,
+    value: length
+  });
+};
 
-  // Enhanced copy to clipboard function
-  const copyToClipboard = async () => {
+  // Enhanced copy to clipboard function with GA4 tracking
+const copyToClipboard = async () => {
+  try {
+    await navigator.clipboard.writeText(password);
+    setFeedback('Password copied to clipboard! ✅');
+    setTimeout(() => setFeedback(''), 2000);
+    
+    // Track copy event in Google Analytics
+    gtag({
+      action: 'copy_password',
+      category: 'tool_usage',
+      label: 'clipboard_success',
+      value: password.length
+    });
+  } catch (err) {
+    // Fallback for older browsers
+    const textArea = document.createElement('textarea');
+    textArea.value = password;
+    document.body.appendChild(textArea);
+    textArea.select();
     try {
-      await navigator.clipboard.writeText(password);
+      document.execCommand('copy');
       setFeedback('Password copied to clipboard! ✅');
       setTimeout(() => setFeedback(''), 2000);
-    } catch (err) {
-      // Fallback for older browsers
-      const textArea = document.createElement('textarea');
-      textArea.value = password;
-      document.body.appendChild(textArea);
-      textArea.select();
-      try {
-        document.execCommand('copy');
-        setFeedback('Password copied to clipboard! ✅');
-        setTimeout(() => setFeedback(''), 2000);
-      } catch (fallbackErr) {
-        setFeedback('Failed to copy password');
-        setTimeout(() => setFeedback(''), 2000);
-      } finally {
-        document.body.removeChild(textArea);
-      }
+      
+      // Track copy event in Google Analytics (fallback method)
+      gtag({
+        action: 'copy_password',
+        category: 'tool_usage',
+        label: 'clipboard_fallback',
+        value: password.length
+      });
+    } catch (fallbackErr) {
+      setFeedback('Failed to copy password');
+      setTimeout(() => setFeedback(''), 2000);
+    } finally {
+      document.body.removeChild(textArea);
     }
-  };
+  }
+};
 
   // Navigate to FAQ page
   const goToFAQ = () => {
