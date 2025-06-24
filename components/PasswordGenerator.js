@@ -15,23 +15,23 @@ const GoogleAdUnit = ({ size, placement, responsive = false }) => {
   const getAdStyles = () => {
     switch(placement) {
       case 'topBanner':
-        return 'ad-top-banner bg-gradient-to-r from-gray-800 to-gray-700 rounded-xl p-4 mb-8 shadow-lg border border-gray-600/50';
+        return 'ad-top-banner bg-gradient-to-r from-white/5 to-white/10 rounded-xl p-4 mb-8 shadow-lg border border-white/10';
       case 'resultsSidebar':
-        return 'ad-results-sidebar bg-gray-800/90 backdrop-blur-sm rounded-xl p-4 shadow-lg';
+        return 'ad-results-sidebar bg-white/5 backdrop-blur-sm rounded-xl p-4 shadow-lg';
       case 'contentInline':
-        return 'ad-content-inline my-12 bg-gradient-to-br from-gray-800 to-gray-700 rounded-xl p-6 text-center shadow-lg border border-gray-600/30';
+        return 'ad-content-inline my-12 bg-gradient-to-br from-white/5 to-white/10 rounded-xl p-6 text-center shadow-lg border border-white/10';
       case 'bottomBanner':
-        return 'ad-bottom-banner mt-12 bg-gradient-to-r from-gray-800 to-gray-700 rounded-xl p-4 shadow-lg border border-gray-600/50';
+        return 'ad-bottom-banner mt-12 bg-gradient-to-r from-white/5 to-white/10 rounded-xl p-4 shadow-lg border border-white/10';
       case 'leftSidebar':
       case 'rightSidebar':
-        return 'ad-sidebar bg-gray-800/80 backdrop-blur-sm rounded-lg p-3 shadow-md border border-gray-700/50';
+        return 'ad-sidebar bg-white/5 backdrop-blur-sm rounded-lg p-3 shadow-md border border-white/10';
       case 'leftSidebar2':
       case 'rightSidebar2':
-        return 'ad-sidebar-secondary bg-gradient-to-br from-gray-700 to-gray-600 rounded-lg p-3 shadow-md border border-gray-500/50';
+        return 'ad-sidebar-secondary bg-gradient-to-br from-white/5 to-white/10 rounded-lg p-3 shadow-md border border-white/10';
       case 'rightSidebar3':
-        return 'ad-sidebar-bottom bg-gradient-to-br from-gray-800 to-gray-700 rounded-lg p-3 shadow-md border border-gray-600/50';
+        return 'ad-sidebar-bottom bg-gradient-to-br from-white/5 to-white/10 rounded-lg p-3 shadow-md border border-white/10';
       default:
-        return 'ad-unit bg-gray-800 rounded-lg p-4';
+        return 'ad-unit bg-white/5 rounded-lg p-4';
     }
   };
   
@@ -40,18 +40,8 @@ const GoogleAdUnit = ({ size, placement, responsive = false }) => {
       <p className="text-xs text-gray-400 uppercase tracking-wide mb-3 font-medium">
         Advertisement
       </p>
-      <div className="bg-gray-700 rounded-lg min-h-[90px] flex items-center justify-center border-2 border-dashed border-gray-600">
+      <div className="bg-white/10 rounded-lg min-h-[90px] flex items-center justify-center border-2 border-dashed border-white/20">
         <span className="text-gray-400 text-sm">AdSense {size} - {placement}</span>
-        {/* Replace with actual AdSense code:
-        <ins 
-          className="adsbygoogle"
-          style={{ display: 'block' }}
-          data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-          data-ad-slot="XXXXXXXXXX"
-          data-ad-format={responsive ? 'auto' : 'rectangle'}
-          data-full-width-responsive={responsive ? 'true' : 'false'}
-        />
-        */}
       </div>
     </div>
   );
@@ -221,26 +211,61 @@ const copyToClipboard = async () => {
         
         {/* Enhanced Custom Styles */}
         <style jsx>{`
-          @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(148, 163, 184, 0.4); }
-            50% { box-shadow: 0 0 30px rgba(148, 163, 184, 0.6); }
+          @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
           }
           
+          @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+          }
+
           @keyframes slide-up {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
           }
           
-          .animate-pulse-glow { animation: pulse-glow 2s infinite; }
-          .animate-slide-up { animation: slide-up 0.6s ease-out; }
+          @keyframes fade-in-delayed {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+          }
+          
+          .animate-float { animation: float 6s ease-in-out infinite; }
+          .animate-slide-up { animation: slide-up 0.8s ease-out; }
+          .animate-fade-in-delayed { animation: fade-in-delayed 0.6s ease-out; }
+
+          .shine-border {
+            position: relative;
+            overflow: hidden;
+          }
+          
+          .shine-border::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shine 3s infinite;
+            z-index: 1;
+          }
+
+          .interactive-grid {
+            background-image: 
+              linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: float 8s ease-in-out infinite;
+          }
         `}</style>
       </Head>
 
-      {/* Enhanced Page Layout with Dark Professional Theme */}
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-black relative overflow-hidden">
-        {/* Subtle Dark Accents */}
-        <div className="absolute top-0 left-0 w-96 h-96 bg-slate-700/20 rounded-full filter blur-3xl opacity-30"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-slate-600/20 rounded-full filter blur-3xl opacity-30"></div>
+      {/* Enhanced Page Layout with Black Theme */}
+      <div className="min-h-screen bg-black relative overflow-hidden">
+        {/* Interactive Grid Background */}
+        <div className="interactive-grid absolute inset-0 opacity-30"></div>
         
         <div className="relative z-10 py-8 px-4 sm:px-6 lg:px-8">
           {/* Conditional Layout - Full width when ads disabled, grid when enabled */}
@@ -269,27 +294,27 @@ const copyToClipboard = async () => {
                   <GoogleAdUnit size="728x90" placement="topBanner" responsive />
                   
                   {/* Enhanced Quick Usage Guide */}
-                  <div className="bg-gradient-to-br from-slate-800 to-slate-700 border border-slate-600 rounded-2xl p-6 shadow-lg relative overflow-hidden animate-slide-up">
+                  <div className="shine-border border border-white/10 rounded-xl bg-white/5 backdrop-blur-sm p-6 shadow-lg relative overflow-hidden animate-slide-up">
                     <div className="relative z-10">
-                      <h2 className="text-xl font-medium text-slate-100 mb-4 flex items-center space-x-2">
-                        <span className="text-slate-400">→</span>
+                      <h2 className="text-xl font-medium text-white mb-4 flex items-center space-x-2">
+                        <span className="text-gray-400">→</span>
                         <span>Quick Guide</span>
                       </h2>
-                      <ol className="space-y-3 text-slate-200">
+                      <ol className="space-y-3 text-gray-400">
                         <li className="flex items-start space-x-3">
-                          <span className="bg-slate-700 text-slate-200 text-xs font-medium px-2 py-1 rounded mt-0.5">1</span>
+                          <span className="bg-white/10 text-gray-300 text-xs font-medium px-2 py-1 rounded mt-0.5">1</span>
                           <span>Adjust password length with the slider below</span>
                         </li>
                         <li className="flex items-start space-x-3">
-                          <span className="bg-slate-700 text-slate-200 text-xs font-medium px-2 py-1 rounded mt-0.5">2</span>
+                          <span className="bg-white/10 text-gray-300 text-xs font-medium px-2 py-1 rounded mt-0.5">2</span>
                           <span>Select character types you want to include</span>
                         </li>
                         <li className="flex items-start space-x-3">
-                          <span className="bg-slate-700 text-slate-200 text-xs font-medium px-2 py-1 rounded mt-0.5">3</span>
+                          <span className="bg-white/10 text-gray-300 text-xs font-medium px-2 py-1 rounded mt-0.5">3</span>
                           <span>Click "Generate Password" for instant results</span>
                         </li>
                         <li className="flex items-start space-x-3">
-                          <span className="bg-slate-700 text-slate-200 text-xs font-medium px-2 py-1 rounded mt-0.5">4</span>
+                          <span className="bg-white/10 text-gray-300 text-xs font-medium px-2 py-1 rounded mt-0.5">4</span>
                           <span>Copy your secure password to use immediately</span>
                         </li>
                       </ol>
@@ -299,16 +324,16 @@ const copyToClipboard = async () => {
                   {/* Enhanced Main Tool Card with conditional sidebar */}
                   <div className={ADSENSE_ENABLED ? "grid lg:grid-cols-4 gap-8" : "max-w-4xl mx-auto"}>
                     <div className={ADSENSE_ENABLED ? "lg:col-span-3" : "w-full"}>
-                      <div className="bg-slate-800/90 backdrop-blur-sm rounded-2xl shadow-2xl p-8 md:p-12 border border-slate-600/50 animate-slide-up">
-                        <h1 className="text-4xl md:text-5xl font-light text-white text-center mb-8 leading-tight tracking-wide">
+                      <div className="shine-border border border-white/10 rounded-xl bg-white/5 backdrop-blur-sm shadow-2xl p-8 md:p-12 animate-slide-up">
+                        <h1 className="text-4xl md:text-5xl font-bold text-white text-center mb-8 leading-tight tracking-tight">
                           Password Generator
                         </h1>
 
                         {/* Enhanced Password Display */}
                         <div className="mb-8">
-                          <div className={`bg-gradient-to-r from-slate-700 to-slate-600 border-2 border-slate-500 rounded-2xl p-6 font-mono text-lg text-center min-h-[80px] flex items-center justify-center break-all transition-all duration-300 text-white ${password ? 'animate-pulse-glow' : ''}`}>
+                          <div className={`shine-border border border-white/10 bg-white/5 backdrop-blur-sm rounded-xl p-6 font-mono text-lg text-center min-h-[80px] flex items-center justify-center break-all transition-all duration-300 text-white ${password ? 'border-white/20' : ''}`}>
                             {password || (
-                              <span className="text-slate-300">
+                              <span className="text-gray-400">
                                 Your secure password will appear here
                               </span>
                             )}
@@ -317,7 +342,7 @@ const copyToClipboard = async () => {
                           {/* Feedback Messages */}
                           {feedback && (
                             <div className="mt-3 text-center">
-                              <span className="inline-flex items-center px-4 py-2 rounded-lg text-sm font-medium bg-slate-700 text-slate-100 border border-slate-600">
+                              <span className="inline-flex items-center px-4 py-2 rounded-lg text-sm font-medium bg-white/10 text-white border border-white/20">
                                 {feedback}
                               </span>
                             </div>
@@ -326,8 +351,8 @@ const copyToClipboard = async () => {
 
                         {/* Enhanced Length Control */}
                         <div className="mb-8">
-                          <label className="block text-lg font-medium text-slate-200 mb-4">
-                            Password Length: <span className="text-2xl text-white font-light">{length}</span>
+                          <label className="block text-lg font-medium text-gray-400 mb-4">
+                            Password Length: <span className="text-2xl text-white font-bold">{length}</span>
                           </label>
                           <input
                             type="range"
@@ -335,12 +360,12 @@ const copyToClipboard = async () => {
                             max="128"
                             value={length}
                             onChange={(e) => setLength(Number(e.target.value))}
-                            className="w-full h-3 bg-slate-600 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-slate-400 transition-all duration-200"
+                            className="w-full h-3 bg-white/10 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/40 transition-all duration-200"
                             style={{
-                              background: `linear-gradient(to right, #cbd5e1 0%, #cbd5e1 ${((length - 8) / (128 - 8)) * 100}%, #475569 ${((length - 8) / (128 - 8)) * 100}%, #475569 100%)`
+                              background: `linear-gradient(to right, #ffffff 0%, #ffffff ${((length - 8) / (128 - 8)) * 100}%, rgba(255,255,255,0.1) ${((length - 8) / (128 - 8)) * 100}%, rgba(255,255,255,0.1) 100%)`
                             }}
                           />
-                          <div className="flex justify-between text-sm text-slate-300 mt-2">
+                          <div className="flex justify-between text-sm text-gray-400 mt-2">
                             <span className="font-medium">8 (Minimum)</span>
                             <span className="font-medium">128 (Maximum)</span>
                           </div>
@@ -348,59 +373,59 @@ const copyToClipboard = async () => {
 
                         {/* Enhanced Character Type Options */}
                         <div className="mb-8">
-                          <label className="block text-lg font-medium text-slate-200 mb-4">
+                          <label className="block text-lg font-medium text-gray-400 mb-4">
                             Include Characters:
                           </label>
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <label className="flex items-center p-4 rounded-lg border border-slate-600 hover:border-slate-500 hover:bg-slate-700/30 transition-all duration-200 cursor-pointer">
+                            <label className="flex items-center p-4 rounded-lg border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all duration-200 cursor-pointer">
                               <input
                                 type="checkbox"
                                 checked={includeUppercase}
                                 onChange={(e) => setIncludeUppercase(e.target.checked)}
-                                className="w-5 h-5 rounded border border-slate-500 text-slate-400 focus:ring-slate-400 focus:ring-1 transition-all duration-200"
+                                className="w-5 h-5 rounded border border-white/20 text-white/40 focus:ring-white/40 focus:ring-1 transition-all duration-200"
                               />
-                              <span className="ml-3 text-lg text-slate-200 font-normal">Uppercase (A-Z)</span>
+                              <span className="ml-3 text-lg text-gray-400 font-normal">Uppercase (A-Z)</span>
                             </label>
 
-                            <label className="flex items-center p-4 rounded-lg border border-slate-600 hover:border-slate-500 hover:bg-slate-700/30 transition-all duration-200 cursor-pointer">
+                            <label className="flex items-center p-4 rounded-lg border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all duration-200 cursor-pointer">
                               <input
                                 type="checkbox"
                                 checked={includeLowercase}
                                 onChange={(e) => setIncludeLowercase(e.target.checked)}
-                                className="w-5 h-5 rounded border border-slate-500 text-slate-400 focus:ring-slate-400 focus:ring-1 transition-all duration-200"
+                                className="w-5 h-5 rounded border border-white/20 text-white/40 focus:ring-white/40 focus:ring-1 transition-all duration-200"
                               />
-                              <span className="ml-3 text-lg text-slate-200 font-normal">Lowercase (a-z)</span>
+                              <span className="ml-3 text-lg text-gray-400 font-normal">Lowercase (a-z)</span>
                             </label>
 
-                            <label className="flex items-center p-4 rounded-lg border border-slate-600 hover:border-slate-500 hover:bg-slate-700/30 transition-all duration-200 cursor-pointer">
+                            <label className="flex items-center p-4 rounded-lg border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all duration-200 cursor-pointer">
                               <input
                                 type="checkbox"
                                 checked={includeNumbers}
                                 onChange={(e) => setIncludeNumbers(e.target.checked)}
-                                className="w-5 h-5 rounded border border-slate-500 text-slate-400 focus:ring-slate-400 focus:ring-1 transition-all duration-200"
+                                className="w-5 h-5 rounded border border-white/20 text-white/40 focus:ring-white/40 focus:ring-1 transition-all duration-200"
                               />
-                              <span className="ml-3 text-lg text-slate-200 font-normal">Numbers (0-9)</span>
+                              <span className="ml-3 text-lg text-gray-400 font-normal">Numbers (0-9)</span>
                             </label>
 
-                            <label className="flex items-center p-4 rounded-lg border border-slate-600 hover:border-slate-500 hover:bg-slate-700/30 transition-all duration-200 cursor-pointer">
+                            <label className="flex items-center p-4 rounded-lg border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all duration-200 cursor-pointer">
                               <input
                                 type="checkbox"
                                 checked={includeSymbols}
                                 onChange={(e) => setIncludeSymbols(e.target.checked)}
-                                className="w-5 h-5 rounded border border-slate-500 text-slate-400 focus:ring-slate-400 focus:ring-1 transition-all duration-200"
+                                className="w-5 h-5 rounded border border-white/20 text-white/40 focus:ring-white/40 focus:ring-1 transition-all duration-200"
                               />
-                              <span className="ml-3 text-lg text-slate-200 font-normal">Symbols (!@#$%^&*)</span>
+                              <span className="ml-3 text-lg text-gray-400 font-normal">Symbols (!@#$%^&*)</span>
                             </label>
                           </div>
                           
-                          <label className="flex items-center p-4 mt-4 rounded-lg border border-slate-600 hover:border-slate-500 hover:bg-slate-700/30 transition-all duration-200 cursor-pointer">
+                          <label className="flex items-center p-4 mt-4 rounded-lg border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all duration-200 cursor-pointer">
                             <input
                               type="checkbox"
                               checked={excludeAmbiguous}
                               onChange={(e) => setExcludeAmbiguous(e.target.checked)}
-                              className="w-5 h-5 rounded border border-slate-500 text-slate-400 focus:ring-slate-400 focus:ring-1 transition-all duration-200"
+                              className="w-5 h-5 rounded border border-white/20 text-white/40 focus:ring-white/40 focus:ring-1 transition-all duration-200"
                             />
-                            <span className="ml-3 text-lg text-slate-200 font-normal">Exclude Ambiguous Characters (0, O, l, I)</span>
+                            <span className="ml-3 text-lg text-gray-400 font-normal">Exclude Ambiguous Characters (0, O, l, I)</span>
                           </label>
                         </div>
 
@@ -409,11 +434,11 @@ const copyToClipboard = async () => {
                           <button
                             onClick={generatePassword}
                             disabled={isGenerating}
-                            className={`flex-1 inline-flex items-center justify-center px-8 py-4 bg-slate-700 hover:bg-slate-600 text-white font-medium rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-slate-500 border border-slate-600 ${isGenerating ? 'opacity-75 cursor-not-allowed' : ''}`}
+                            className={`flex-1 inline-flex items-center justify-center px-8 py-4 bg-white text-black hover:bg-gray-100 font-medium rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/50 ${isGenerating ? 'opacity-75 cursor-not-allowed' : ''}`}
                           >
                             {isGenerating ? (
                               <>
-                                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                 </svg>
@@ -427,7 +452,7 @@ const copyToClipboard = async () => {
                           {password && (
                             <button
                               onClick={copyToClipboard}
-                              className="flex-1 sm:flex-none inline-flex items-center justify-center px-8 py-4 bg-slate-600 hover:bg-slate-500 text-white font-medium rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-slate-400 border border-slate-500"
+                              className="flex-1 sm:flex-none inline-flex items-center justify-center px-8 py-4 border border-white/10 bg-white/5 hover:bg-white/10 text-white font-medium rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/40"
                             >
                               Copy Password
                             </button>
@@ -447,12 +472,12 @@ const copyToClipboard = async () => {
                   </div>
 
                   {/* Enhanced Tool Description Section */}
-                  <div className="bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-lg p-8 md:p-12 border border-slate-600/50 animate-slide-up">
-                    <h2 className="text-3xl font-light text-white mb-8 text-center">
+                  <div className="shine-border border border-white/10 rounded-xl bg-white/5 backdrop-blur-sm shadow-lg p-8 md:p-12 animate-slide-up">
+                    <h2 className="text-3xl font-bold text-white mb-8 text-center tracking-tight">
                       About Our Password Generator
                     </h2>
                     
-                    <div className="prose prose-lg max-w-none text-slate-200 space-y-6">
+                    <div className="prose prose-lg max-w-none text-gray-400 space-y-6">
                       <p className="text-xl leading-relaxed">
                         Our free password generator creates <strong className="text-white">cryptographically secure, random passwords</strong> to protect your online accounts from cyber threats. In today's digital world, weak passwords are the #1 cause of data breaches and account compromises. This tool generates strong, unique passwords that are virtually impossible for hackers to crack using brute force attacks or dictionary methods.
                       </p>
@@ -468,12 +493,12 @@ const copyToClipboard = async () => {
 
                     {/* Enhanced FAQ Link Button */}
                     <div className="mt-10 text-center">
-                      <p className="text-xl text-slate-300 mb-6">
+                      <p className="text-xl text-gray-400 mb-6">
                         Have questions about password security?
                       </p>
                       <button
                         onClick={goToFAQ}
-                        className="inline-flex items-center px-8 py-4 bg-slate-700 hover:bg-slate-600 text-white font-medium rounded-lg transform hover:scale-[1.02] transition-all duration-300 shadow-md hover:shadow-lg border border-slate-600"
+                        className="inline-flex items-center px-8 py-4 border border-white/10 bg-white/5 hover:bg-white/10 text-white font-medium rounded-lg transform hover:scale-[1.02] transition-all duration-300 shadow-md hover:shadow-lg"
                       >
                         View Password Security FAQ
                         <svg className="ml-3 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -489,25 +514,25 @@ const copyToClipboard = async () => {
                   {/* Enhanced Security & Best Practices Sections */}
                   <div className="grid lg:grid-cols-2 gap-8">
                     {/* Enhanced Security Section */}
-                    <div className="bg-gradient-to-br from-slate-800 to-slate-700 border border-slate-600 rounded-2xl p-8 shadow-lg relative overflow-hidden animate-slide-up">
+                    <div className="shine-border border border-white/10 rounded-xl bg-white/5 backdrop-blur-sm p-8 shadow-lg relative overflow-hidden animate-slide-up">
                       <div className="relative z-10">
-                        <h3 className="text-2xl font-light text-white mb-6 flex items-center space-x-3">
-                          <span className="text-slate-300">•</span>
+                        <h3 className="text-2xl font-bold text-white mb-6 flex items-center space-x-3 tracking-tight">
+                          <span className="text-gray-400">•</span>
                           <span>Security & Privacy</span>
                         </h3>
-                        <div className="text-slate-200 space-y-4">
+                        <div className="text-gray-400 space-y-4">
                           <div className="grid gap-4">
-                            <div className="bg-slate-700/50 rounded-lg p-4">
+                            <div className="bg-white/5 rounded-lg p-4 border border-white/10">
                               <h4 className="font-medium text-white mb-2">Cryptographic Security</h4>
-                              <p className="text-sm text-slate-300">Uses crypto.getRandomValues() for military-grade randomness</p>
+                              <p className="text-sm text-gray-400">Uses crypto.getRandomValues() for military-grade randomness</p>
                             </div>
-                            <div className="bg-slate-700/50 rounded-lg p-4">
+                            <div className="bg-white/5 rounded-lg p-4 border border-white/10">
                               <h4 className="font-medium text-white mb-2">Zero Data Storage</h4>
-                              <p className="text-sm text-slate-300">All passwords generated locally - never stored or transmitted</p>
+                              <p className="text-sm text-gray-400">All passwords generated locally - never stored or transmitted</p>
                             </div>
-                            <div className="bg-slate-700/50 rounded-lg p-4">
+                            <div className="bg-white/5 rounded-lg p-4 border border-white/10">
                               <h4 className="font-medium text-white mb-2">Privacy Guarantee</h4>
-                              <p className="text-sm text-slate-300">No cookies, tracking, or personal information required</p>
+                              <p className="text-sm text-gray-400">No cookies, tracking, or personal information required</p>
                             </div>
                           </div>
                         </div>
@@ -515,28 +540,28 @@ const copyToClipboard = async () => {
                     </div>
 
                     {/* Enhanced Best Practices Section */}
-                    <div className="bg-gradient-to-br from-slate-800 to-slate-700 border border-slate-600 rounded-2xl p-8 shadow-lg relative overflow-hidden animate-slide-up">
+                    <div className="shine-border border border-white/10 rounded-xl bg-white/5 backdrop-blur-sm p-8 shadow-lg relative overflow-hidden animate-slide-up">
                       <div className="relative z-10">
-                        <h3 className="text-2xl font-light text-white mb-6 flex items-center space-x-3">
-                          <span className="text-slate-300">•</span>
+                        <h3 className="text-2xl font-bold text-white mb-6 flex items-center space-x-3 tracking-tight">
+                          <span className="text-gray-400">•</span>
                           <span>Best Practices</span>
                         </h3>
-                        <div className="text-slate-200 space-y-4">
+                        <div className="text-gray-400 space-y-4">
                           <div className="space-y-3">
                             <div className="flex items-start space-x-3">
-                              <span className="bg-slate-700 text-slate-200 text-xs font-medium px-2 py-1 rounded mt-1">1</span>
+                              <span className="bg-white/10 text-gray-300 text-xs font-medium px-2 py-1 rounded mt-1">1</span>
                               <span><strong className="text-white">Use a Password Manager:</strong> Store passwords in Bitwarden, 1Password, or LastPass</span>
                             </div>
                             <div className="flex items-start space-x-3">
-                              <span className="bg-slate-700 text-slate-200 text-xs font-medium px-2 py-1 rounded mt-1">2</span>
+                              <span className="bg-white/10 text-gray-300 text-xs font-medium px-2 py-1 rounded mt-1">2</span>
                               <span><strong className="text-white">Enable 2FA:</strong> Add two-factor authentication wherever available</span>
                             </div>
                             <div className="flex items-start space-x-3">
-                              <span className="bg-slate-700 text-slate-200 text-xs font-medium px-2 py-1 rounded mt-1">3</span>
+                              <span className="bg-white/10 text-gray-300 text-xs font-medium px-2 py-1 rounded mt-1">3</span>
                               <span><strong className="text-white">Unique Passwords:</strong> Never reuse passwords across accounts</span>
                             </div>
                             <div className="flex items-start space-x-3">
-                              <span className="bg-slate-700 text-slate-200 text-xs font-medium px-2 py-1 rounded mt-1">4</span>
+                              <span className="bg-white/10 text-gray-300 text-xs font-medium px-2 py-1 rounded mt-1">4</span>
                               <span><strong className="text-white">Regular Updates:</strong> Change critical passwords annually</span>
                             </div>
                           </div>
