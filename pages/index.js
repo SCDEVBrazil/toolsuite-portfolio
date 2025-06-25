@@ -54,25 +54,6 @@ export default function Home() {
   
   // Check if ads are enabled to determine layout
   const ADSENSE_ENABLED = false; // Set to true when implementing AdSense in Week 7
-  
-  // Detect subdomain and redirect accordingly
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const hostname = window.location.hostname;
-      
-      // If visiting password.toolsuite.info, redirect to /password
-      if (hostname === 'password.toolsuite.info') {
-        router.replace('/password');
-        return;
-      }
-      
-      // Add other subdomain redirects here as we build more tools
-      // if (hostname === 'bmi.toolsuite.info') {
-      //   router.replace('/bmi');
-      //   return;
-      // }
-    }
-  }, [router]);
 
   // Scroll to tools section function
   const scrollToTools = () => {
