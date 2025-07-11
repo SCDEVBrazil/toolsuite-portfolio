@@ -15,19 +15,19 @@ const GoogleAdUnit = ({ size, placement, responsive = false }) => {
       case 'topBanner':
         return 'ad-top-banner bg-gradient-to-r from-white/5 to-white/10 rounded-xl p-4 mb-8 shadow-lg border border-white/10';
       case 'faqSidebar':
-        return 'ad-faq-sidebar bg-white/5 backdrop-blur-sm rounded-xl p-4 shadow-lg sticky top-8';
+        return 'ad-faq-sidebar bg-gray-800 backdrop-blur-sm rounded-xl p-4 shadow-lg sticky top-8';
       case 'contentInline':
         return 'ad-content-inline my-12 bg-gradient-to-br from-white/5 to-white/10 rounded-xl p-6 text-center shadow-lg border border-white/10';
       case 'bottomBanner':
         return 'ad-bottom-banner mt-12 bg-gradient-to-r from-white/5 to-white/10 rounded-xl p-4 shadow-lg border border-white/10';
       case 'leftSidebar':
       case 'rightSidebar':
-        return 'ad-sidebar bg-white/5 backdrop-blur-sm rounded-lg p-3 shadow-md border border-white/10';
+        return 'ad-sidebar bg-gray-800 backdrop-blur-sm rounded-lg p-3 shadow-md border border-white/10';
       case 'leftSidebar2':
       case 'rightSidebar3':
         return 'ad-sidebar-bottom bg-gradient-to-br from-white/5 to-white/10 rounded-lg p-3 shadow-md border border-white/10';
       default:
-        return 'ad-unit bg-white/5 rounded-lg p-4';
+        return 'ad-unit bg-gray-800 rounded-lg p-4';
     }
   };
   
@@ -36,7 +36,7 @@ const GoogleAdUnit = ({ size, placement, responsive = false }) => {
       <p className="text-xs text-gray-400 uppercase tracking-wide mb-3 font-medium">
         Advertisement
       </p>
-      <div className="bg-white/10 rounded-lg min-h-[90px] flex items-center justify-center border-2 border-dashed border-white/20">
+      <div className="bg-gray-900 rounded-lg min-h-[90px] flex items-center justify-center border-2 border-dashed border-white/20">
         <span className="text-gray-400 text-sm">AdSense {size} - {placement}</span>
       </div>
     </div>
@@ -194,7 +194,7 @@ export default function PasswordFAQ() {
                   <div className="mb-8 animate-slide-up">
                     <Link 
                       href="/password"
-                      className="inline-flex items-center px-4 py-2 bg-white/5 backdrop-blur-sm rounded-xl shadow-md hover:shadow-lg text-gray-400 hover:text-white font-medium transition-all duration-300 transform hover:scale-105 border border-white/10"
+                      className="inline-flex items-center px-4 py-2 bg-gray-800 backdrop-blur-sm rounded-xl shadow-md hover:shadow-lg text-gray-400 hover:text-white font-medium transition-all duration-300 transform hover:scale-105 border border-white/10"
                     >
                       <svg className="mr-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -218,13 +218,13 @@ export default function PasswordFAQ() {
                     
                     {/* FAQ Main Content - Full width when ads disabled */}
                     <div className={ADSENSE_ENABLED ? "lg:col-span-3" : "w-full"}>
-                      <div className="shine-border border border-white/10 rounded-xl bg-white/5 backdrop-blur-sm shadow-2xl p-8 md:p-12 animate-slide-up">
+                      <div className="shine-border border border-white/10 rounded-xl bg-gray-800 backdrop-blur-sm shadow-2xl p-8 md:p-12 animate-slide-up">
                         <div className="space-y-8">
                           
                           {/* FAQ Item 1 */}
-                          <div className="faq-item animate-fade-in-delayed border-b border-white/10 pb-8 hover:bg-white/5 rounded-xl p-6 transition-all duration-300">
+                          <div className="faq-item animate-fade-in-delayed border-b border-white/10 pb-8 hover:bg-gray-800 rounded-xl p-6 transition-all duration-300">
                             <h2 className="text-2xl font-medium text-white mb-4 flex items-start space-x-3">
-                              <span className="bg-white/10 text-gray-300 rounded-full w-8 h-8 flex items-center justify-center text-sm font-medium mt-1">1</span>
+                              <span className="bg-gray-900 text-gray-300 rounded-full w-8 h-8 flex items-center justify-center text-sm font-medium mt-1">1</span>
                               <span>Is it safe to use an online password generator?</span>
                             </h2>
                             <p className="text-lg text-gray-400 leading-relaxed ml-11">
@@ -233,9 +233,9 @@ export default function PasswordFAQ() {
                           </div>
 
                           {/* FAQ Item 2 */}
-                          <div className="faq-item animate-fade-in-delayed border-b border-white/10 pb-8 hover:bg-white/5 rounded-xl p-6 transition-all duration-300">
+                          <div className="faq-item animate-fade-in-delayed border-b border-white/10 pb-8 hover:bg-gray-800 rounded-xl p-6 transition-all duration-300">
                             <h2 className="text-2xl font-medium text-white mb-4 flex items-start space-x-3">
-                              <span className="bg-white/10 text-gray-300 rounded-full w-8 h-8 flex items-center justify-center text-sm font-medium mt-1">2</span>
+                              <span className="bg-gray-900 text-gray-300 rounded-full w-8 h-8 flex items-center justify-center text-sm font-medium mt-1">2</span>
                               <span>How long should my password be?</span>
                             </h2>
                             <p className="text-lg text-gray-400 leading-relaxed ml-11">
@@ -244,9 +244,9 @@ export default function PasswordFAQ() {
                           </div>
 
                           {/* FAQ Item 3 */}
-                          <div className="faq-item animate-fade-in-delayed border-b border-white/10 pb-8 hover:bg-white/5 rounded-xl p-6 transition-all duration-300">
+                          <div className="faq-item animate-fade-in-delayed border-b border-white/10 pb-8 hover:bg-gray-800 rounded-xl p-6 transition-all duration-300">
                             <h2 className="text-2xl font-medium text-white mb-4 flex items-start space-x-3">
-                              <span className="bg-white/10 text-gray-300 rounded-full w-8 h-8 flex items-center justify-center text-sm font-medium mt-1">3</span>
+                              <span className="bg-gray-900 text-gray-300 rounded-full w-8 h-8 flex items-center justify-center text-sm font-medium mt-1">3</span>
                               <span>Should I include symbols in my passwords?</span>
                             </h2>
                             <p className="text-lg text-gray-400 leading-relaxed ml-11">
@@ -255,20 +255,20 @@ export default function PasswordFAQ() {
                           </div>
 
                           {/* FAQ Item 4 */}
-                          <div className="faq-item animate-fade-in-delayed border-b border-white/10 pb-8 hover:bg-white/5 rounded-xl p-6 transition-all duration-300">
+                          <div className="faq-item animate-fade-in-delayed border-b border-white/10 pb-8 hover:bg-gray-800 rounded-xl p-6 transition-all duration-300">
                             <h2 className="text-2xl font-medium text-white mb-4 flex items-start space-x-3">
-                              <span className="bg-white/10 text-gray-300 rounded-full w-8 h-8 flex items-center justify-center text-sm font-medium mt-1">4</span>
+                              <span className="bg-gray-900 text-gray-300 rounded-full w-8 h-8 flex items-center justify-center text-sm font-medium mt-1">4</span>
                               <span>What does "exclude ambiguous characters" mean?</span>
                             </h2>
                             <p className="text-lg text-gray-400 leading-relaxed ml-11">
-                              Ambiguous characters like <code className="bg-white/10 px-2 py-1 rounded font-mono text-sm text-gray-300">0</code> (zero), <code className="bg-white/10 px-2 py-1 rounded font-mono text-sm text-gray-300">O</code> (letter O), <code className="bg-white/10 px-2 py-1 rounded font-mono text-sm text-gray-300">l</code> (lowercase L), and <code className="bg-white/10 px-2 py-1 rounded font-mono text-sm text-gray-300">I</code> (uppercase i) can be confused when typing, especially with certain fonts. Excluding them makes passwords easier to type accurately but slightly reduces password strength. Use this option if you frequently type passwords manually.
+                              Ambiguous characters like <code className="bg-gray-900 px-2 py-1 rounded font-mono text-sm text-gray-300">0</code> (zero), <code className="bg-gray-900 px-2 py-1 rounded font-mono text-sm text-gray-300">O</code> (letter O), <code className="bg-gray-900 px-2 py-1 rounded font-mono text-sm text-gray-300">l</code> (lowercase L), and <code className="bg-gray-900 px-2 py-1 rounded font-mono text-sm text-gray-300">I</code> (uppercase i) can be confused when typing, especially with certain fonts. Excluding them makes passwords easier to type accurately but slightly reduces password strength. Use this option if you frequently type passwords manually.
                             </p>
                           </div>
 
                           {/* FAQ Item 5 */}
-                          <div className="faq-item animate-fade-in-delayed border-b border-white/10 pb-8 hover:bg-white/5 rounded-xl p-6 transition-all duration-300">
+                          <div className="faq-item animate-fade-in-delayed border-b border-white/10 pb-8 hover:bg-gray-800 rounded-xl p-6 transition-all duration-300">
                             <h2 className="text-2xl font-medium text-white mb-4 flex items-start space-x-3">
-                              <span className="bg-white/10 text-gray-300 rounded-full w-8 h-8 flex items-center justify-center text-sm font-medium mt-1">5</span>
+                              <span className="bg-gray-900 text-gray-300 rounded-full w-8 h-8 flex items-center justify-center text-sm font-medium mt-1">5</span>
                               <span>How often should I change my passwords?</span>
                             </h2>
                             <p className="text-lg text-gray-400 leading-relaxed ml-11">
@@ -277,9 +277,9 @@ export default function PasswordFAQ() {
                           </div>
 
                           {/* FAQ Item 6 */}
-                          <div className="faq-item animate-fade-in-delayed border-b border-white/10 pb-8 hover:bg-white/5 rounded-xl p-6 transition-all duration-300">
+                          <div className="faq-item animate-fade-in-delayed border-b border-white/10 pb-8 hover:bg-gray-800 rounded-xl p-6 transition-all duration-300">
                             <h2 className="text-2xl font-medium text-white mb-4 flex items-start space-x-3">
-                              <span className="bg-white/10 text-gray-300 rounded-full w-8 h-8 flex items-center justify-center text-sm font-medium mt-1">6</span>
+                              <span className="bg-gray-900 text-gray-300 rounded-full w-8 h-8 flex items-center justify-center text-sm font-medium mt-1">6</span>
                               <span>Should I use the same password for multiple accounts?</span>
                             </h2>
                             <p className="text-lg text-gray-400 leading-relaxed ml-11">
@@ -288,24 +288,24 @@ export default function PasswordFAQ() {
                           </div>
 
                           {/* FAQ Item 7 */}
-                          <div className="faq-item animate-fade-in-delayed border-b border-white/10 pb-8 hover:bg-white/5 rounded-xl p-6 transition-all duration-300">
+                          <div className="faq-item animate-fade-in-delayed border-b border-white/10 pb-8 hover:bg-gray-800 rounded-xl p-6 transition-all duration-300">
                             <h2 className="text-2xl font-medium text-white mb-4 flex items-start space-x-3">
-                              <span className="bg-white/10 text-gray-300 rounded-full w-8 h-8 flex items-center justify-center text-sm font-medium mt-1">7</span>
+                              <span className="bg-gray-900 text-gray-300 rounded-full w-8 h-8 flex items-center justify-center text-sm font-medium mt-1">7</span>
                               <span>What's the difference between a strong and weak password?</span>
                             </h2>
                             <div className="text-lg text-gray-400 leading-relaxed ml-11 space-y-3">
                               <p>Strong passwords are long (12+ characters), use multiple character types (uppercase, lowercase, numbers, symbols), and are completely random.</p>
-                              <div className="bg-white/5 rounded-lg p-4 space-y-2 border border-white/10">
-                                <p><span className="text-gray-400 font-medium">❌ Weak:</span> <code className="bg-white/10 px-2 py-1 rounded font-mono text-sm text-gray-300">password123</code></p>
-                                <p><span className="text-gray-400 font-medium">✅ Strong:</span> <code className="bg-white/10 px-2 py-1 rounded font-mono text-sm text-gray-300">K9#mX7$nQ2vL8@pR</code></p>
+                              <div className="bg-gray-800 rounded-lg p-4 space-y-2 border border-white/10">
+                                <p><span className="text-gray-400 font-medium">❌ Weak:</span> <code className="bg-gray-900 px-2 py-1 rounded font-mono text-sm text-gray-300">password123</code></p>
+                                <p><span className="text-gray-400 font-medium">✅ Strong:</span> <code className="bg-gray-900 px-2 py-1 rounded font-mono text-sm text-gray-300">K9#mX7$nQ2vL8@pR</code></p>
                               </div>
                             </div>
                           </div>
 
                           {/* FAQ Item 8 */}
-                          <div className="faq-item animate-fade-in-delayed border-b border-white/10 pb-8 hover:bg-white/5 rounded-xl p-6 transition-all duration-300">
+                          <div className="faq-item animate-fade-in-delayed border-b border-white/10 pb-8 hover:bg-gray-800 rounded-xl p-6 transition-all duration-300">
                             <h2 className="text-2xl font-medium text-white mb-4 flex items-start space-x-3">
-                              <span className="bg-white/10 text-gray-300 rounded-full w-8 h-8 flex items-center justify-center text-sm font-medium mt-1">8</span>
+                              <span className="bg-gray-900 text-gray-300 rounded-full w-8 h-8 flex items-center justify-center text-sm font-medium mt-1">8</span>
                               <span>Should I write down my passwords?</span>
                             </h2>
                             <p className="text-lg text-gray-400 leading-relaxed ml-11">
@@ -314,14 +314,14 @@ export default function PasswordFAQ() {
                           </div>
 
                           {/* FAQ Item 9 */}
-                          <div className="faq-item animate-fade-in-delayed hover:bg-white/5 rounded-xl p-6 transition-all duration-300">
+                          <div className="faq-item animate-fade-in-delayed hover:bg-gray-800 rounded-xl p-6 transition-all duration-300">
                             <h2 className="text-2xl font-medium text-white mb-4 flex items-start space-x-3">
-                              <span className="bg-white/10 text-gray-300 rounded-full w-8 h-8 flex items-center justify-center text-sm font-medium mt-1">9</span>
+                              <span className="bg-gray-900 text-gray-300 rounded-full w-8 h-8 flex items-center justify-center text-sm font-medium mt-1">9</span>
                               <span>What should I do if I think my password was compromised?</span>
                             </h2>
                             <div className="text-lg text-gray-400 leading-relaxed ml-11">
                               <p className="mb-3"><strong className="text-white">Act immediately:</strong></p>
-                              <ol className="space-y-2 list-decimal list-inside bg-white/5 rounded-lg p-4 border border-white/10">
+                              <ol className="space-y-2 list-decimal list-inside bg-gray-800 rounded-lg p-4 border border-white/10">
                                 <li>Change the password on the affected account</li>
                                 <li>Check for unauthorized activity</li>
                                 <li>If you used the same password elsewhere, change those too</li>
@@ -334,7 +334,7 @@ export default function PasswordFAQ() {
                         </div>
 
                         {/* Enhanced Call to Action */}
-                        <div className="mt-16 text-center shine-border border border-white/10 rounded-xl bg-white/5 backdrop-blur-sm p-8 shadow-lg relative overflow-hidden">
+                        <div className="mt-16 text-center shine-border border border-white/10 rounded-xl bg-gray-800 backdrop-blur-sm p-8 shadow-lg relative overflow-hidden">
                           <div className="relative z-10">
                             <h3 className="text-2xl font-medium text-white mb-4 flex items-center justify-center space-x-2">
                               <span className="text-gray-400">→</span>

@@ -57,6 +57,7 @@ export default function PasswordGenerator() {
   const [excludeAmbiguous, setExcludeAmbiguous] = useState(false);
   const [feedback, setFeedback] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
+  const [isCopying, setIsCopying] = useState(false);
   
   const router = useRouter();
 
@@ -124,6 +125,10 @@ const generatePassword = async () => {
 
   // Enhanced copy to clipboard function with GA4 tracking
 const copyToClipboard = async () => {
+  if (!password) return;
+  
+  setIsCopying(true);
+  
   try {
     await navigator.clipboard.writeText(password);
     setFeedback('Password copied to clipboard! ✓');
@@ -160,6 +165,8 @@ const copyToClipboard = async () => {
     } finally {
       document.body.removeChild(textArea);
     }
+  } finally {
+    setIsCopying(false);
   }
 };
 
@@ -230,10 +237,16 @@ const copyToClipboard = async () => {
             0% { opacity: 0; transform: translateY(10px); }
             100% { opacity: 1; transform: translateY(0); }
           }
+
+          @keyframes pulse-green {
+            0%, 100% { background-color: rgb(34 197 94); }
+            50% { background-color: rgb(22 163 74); }
+          }
           
           .animate-float { animation: float 6s ease-in-out infinite; }
           .animate-slide-up { animation: slide-up 0.8s ease-out; }
           .animate-fade-in-delayed { animation: fade-in-delayed 0.6s ease-out; }
+          .animate-pulse-green { animation: pulse-green 0.5s ease-in-out; }
 
           .shine-border {
             position: relative;
@@ -258,6 +271,15 @@ const copyToClipboard = async () => {
               linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
             background-size: 40px 40px;
             animation: float 8s ease-in-out infinite;
+          }
+
+          .copy-button {
+            transition: all 0.2s ease;
+          }
+          
+          .copy-button:hover {
+            transform: scale(1.1);
+            background-color: rgb(55 65 81);
           }
         `}</style>
       </Head>
@@ -303,19 +325,19 @@ const copyToClipboard = async () => {
                       <ol className="space-y-3 text-gray-400">
                         <li className="flex items-start space-x-3">
                           <span className="bg-gray-900 text-gray-300 text-xs font-medium px-2 py-1 rounded mt-0.5">1</span>
-                          <span>Adjust password length with the slider below</span>
+                          <span>Click "Generate Password" for instant secure password</span>
                         </li>
                         <li className="flex items-start space-x-3">
                           <span className="bg-gray-900 text-gray-300 text-xs font-medium px-2 py-1 rounded mt-0.5">2</span>
-                          <span>Select character types you want to include</span>
+                          <span>Click the copy icon to save to clipboard</span>
                         </li>
                         <li className="flex items-start space-x-3">
                           <span className="bg-gray-900 text-gray-300 text-xs font-medium px-2 py-1 rounded mt-0.5">3</span>
-                          <span>Click "Generate Password" for instant results</span>
+                          <span>Customize length and character types below</span>
                         </li>
                         <li className="flex items-start space-x-3">
                           <span className="bg-gray-900 text-gray-300 text-xs font-medium px-2 py-1 rounded mt-0.5">4</span>
-                          <span>Copy your secure password to use immediately</span>
+                          <span>Generate new passwords as needed</span>
                         </li>
                       </ol>
                     </div>
@@ -329,13 +351,35 @@ const copyToClipboard = async () => {
                           Password Generator
                         </h1>
 
-                        {/* Enhanced Password Display */}
-                        <div className="mb-8">
-                          <div className={`shine-border border border-white/10 bg-gray-800 backdrop-blur-sm rounded-xl p-6 font-mono text-lg text-center min-h-[80px] flex items-center justify-center break-all transition-all duration-300 text-white ${password ? 'border-white/20' : ''}`}>
-                            {password || (
-                              <span className="text-gray-400">
-                                Your secure password will appear here
-                              </span>
+                        {/* IMPROVED: Password Display with Inline Copy Button */}
+                        <div className="mb-6">
+                          <div className="relative">
+                            <div className={`shine-border border border-white/10 bg-gray-800 backdrop-blur-sm rounded-xl p-6 font-mono text-lg min-h-[80px] flex items-center justify-center break-all transition-all duration-300 text-white ${password ? 'border-white/20 pr-16' : ''}`}>
+                              {password || (
+                                <span className="text-gray-400">
+                                  Your secure password will appear here
+                                </span>
+                              )}
+                            </div>
+                            
+                            {/* Inline Copy Button */}
+                            {password && (
+                              <button
+                                onClick={copyToClipboard}
+                                disabled={isCopying}
+                                className={`absolute right-3 top-1/2 transform -translate-y-1/2 p-2 rounded-lg transition-all duration-200 copy-button ${isCopying ? 'animate-pulse-green' : 'bg-gray-700 hover:bg-gray-600'}`}
+                                title="Copy to clipboard"
+                              >
+                                {isCopying ? (
+                                  <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                  </svg>
+                                ) : (
+                                  <svg className="w-5 h-5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                  </svg>
+                                )}
+                              </button>
                             )}
                           </div>
                           
@@ -347,6 +391,27 @@ const copyToClipboard = async () => {
                               </span>
                             </div>
                           )}
+                        </div>
+
+                        {/* IMPROVED: Generate Button - Moved Right Below Password Box */}
+                        <div className="mb-8">
+                          <button
+                            onClick={generatePassword}
+                            disabled={isGenerating}
+                            className={`w-full inline-flex items-center justify-center px-8 py-4 bg-white text-black hover:bg-gray-100 font-medium rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/50 ${isGenerating ? 'opacity-75 cursor-not-allowed' : ''}`}
+                          >
+                            {isGenerating ? (
+                              <>
+                                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                Generating...
+                              </>
+                            ) : (
+                              "Generate Password"
+                            )}
+                          </button>
                         </div>
 
                         {/* Enhanced Length Control */}
@@ -371,93 +436,78 @@ const copyToClipboard = async () => {
                           </div>
                         </div>
 
-                        {/* Enhanced Character Type Options */}
+                        {/* IMPROVED: More Compact Character Type Options */}
                         <div className="mb-8">
                           <label className="block text-lg font-medium text-gray-400 mb-4">
                             Include Characters:
                           </label>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <label className="flex items-center p-4 rounded-lg border border-white/10 hover:border-white/20 hover:bg-gray-800 transition-all duration-200 cursor-pointer">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <label className="flex items-center p-3 rounded-lg border border-white/10 hover:border-white/20 hover:bg-gray-800 transition-all duration-200 cursor-pointer">
                               <input
                                 type="checkbox"
                                 checked={includeUppercase}
                                 onChange={(e) => setIncludeUppercase(e.target.checked)}
-                                className="w-5 h-5 rounded border border-white/20 text-white/40 focus:ring-white/40 focus:ring-1 transition-all duration-200"
+                                className="w-4 h-4 rounded border border-white/20 text-white/40 focus:ring-white/40 focus:ring-1 transition-all duration-200"
                               />
-                              <span className="ml-3 text-lg text-gray-400 font-normal">Uppercase (A-Z)</span>
+                              <span className="ml-3 text-gray-400 font-normal">Uppercase (A-Z)</span>
                             </label>
 
-                            <label className="flex items-center p-4 rounded-lg border border-white/10 hover:border-white/20 hover:bg-gray-800 transition-all duration-200 cursor-pointer">
+                            <label className="flex items-center p-3 rounded-lg border border-white/10 hover:border-white/20 hover:bg-gray-800 transition-all duration-200 cursor-pointer">
                               <input
                                 type="checkbox"
                                 checked={includeLowercase}
                                 onChange={(e) => setIncludeLowercase(e.target.checked)}
-                                className="w-5 h-5 rounded border border-white/20 text-white/40 focus:ring-white/40 focus:ring-1 transition-all duration-200"
+                                className="w-4 h-4 rounded border border-white/20 text-white/40 focus:ring-white/40 focus:ring-1 transition-all duration-200"
                               />
-                              <span className="ml-3 text-lg text-gray-400 font-normal">Lowercase (a-z)</span>
+                              <span className="ml-3 text-gray-400 font-normal">Lowercase (a-z)</span>
                             </label>
 
-                            <label className="flex items-center p-4 rounded-lg border border-white/10 hover:border-white/20 hover:bg-gray-800 transition-all duration-200 cursor-pointer">
+                            <label className="flex items-center p-3 rounded-lg border border-white/10 hover:border-white/20 hover:bg-gray-800 transition-all duration-200 cursor-pointer">
                               <input
                                 type="checkbox"
                                 checked={includeNumbers}
                                 onChange={(e) => setIncludeNumbers(e.target.checked)}
-                                className="w-5 h-5 rounded border border-white/20 text-white/40 focus:ring-white/40 focus:ring-1 transition-all duration-200"
+                                className="w-4 h-4 rounded border border-white/20 text-white/40 focus:ring-white/40 focus:ring-1 transition-all duration-200"
                               />
-                              <span className="ml-3 text-lg text-gray-400 font-normal">Numbers (0-9)</span>
+                              <span className="ml-3 text-gray-400 font-normal">Numbers (0-9)</span>
                             </label>
 
-                            <label className="flex items-center p-4 rounded-lg border border-white/10 hover:border-white/20 hover:bg-gray-800 transition-all duration-200 cursor-pointer">
+                            <label className="flex items-center p-3 rounded-lg border border-white/10 hover:border-white/20 hover:bg-gray-800 transition-all duration-200 cursor-pointer">
                               <input
                                 type="checkbox"
                                 checked={includeSymbols}
                                 onChange={(e) => setIncludeSymbols(e.target.checked)}
-                                className="w-5 h-5 rounded border border-white/20 text-white/40 focus:ring-white/40 focus:ring-1 transition-all duration-200"
+                                className="w-4 h-4 rounded border border-white/20 text-white/40 focus:ring-white/40 focus:ring-1 transition-all duration-200"
                               />
-                              <span className="ml-3 text-lg text-gray-400 font-normal">Symbols (!@#$%^&*)</span>
+                              <span className="ml-3 text-gray-400 font-normal">Symbols (!@#$%^&*)</span>
                             </label>
                           </div>
                           
-                          <label className="flex items-center p-4 mt-4 rounded-lg border border-white/10 hover:border-white/20 hover:bg-gray-800 transition-all duration-200 cursor-pointer">
+                          <label className="flex items-center p-3 mt-3 rounded-lg border border-white/10 hover:border-white/20 hover:bg-gray-800 transition-all duration-200 cursor-pointer">
                             <input
                               type="checkbox"
                               checked={excludeAmbiguous}
                               onChange={(e) => setExcludeAmbiguous(e.target.checked)}
-                              className="w-5 h-5 rounded border border-white/20 text-white/40 focus:ring-white/40 focus:ring-1 transition-all duration-200"
+                              className="w-4 h-4 rounded border border-white/20 text-white/40 focus:ring-white/40 focus:ring-1 transition-all duration-200"
                             />
-                            <span className="ml-3 text-lg text-gray-400 font-normal">Exclude Ambiguous Characters (0, O, l, I)</span>
+                            <span className="ml-3 text-gray-400 font-normal">Exclude Ambiguous Characters (0, O, l, I)</span>
                           </label>
                         </div>
 
-                        {/* Enhanced Action Buttons */}
-                        <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                          <button
-                            onClick={generatePassword}
-                            disabled={isGenerating}
-                            className={`flex-1 inline-flex items-center justify-center px-8 py-4 bg-white text-black hover:bg-gray-100 font-medium rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/50 ${isGenerating ? 'opacity-75 cursor-not-allowed' : ''}`}
-                          >
-                            {isGenerating ? (
-                              <>
-                                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                </svg>
-                                Generating...
-                              </>
-                            ) : (
-                              "Generate Password"
-                            )}
-                          </button>
-
-                          {password && (
+                        {/* Backup Copy Button (kept for accessibility) */}
+                        {password && (
+                          <div className="mb-6">
                             <button
                               onClick={copyToClipboard}
-                              className="flex-1 sm:flex-none inline-flex items-center justify-center px-8 py-4 border border-white/10 bg-gray-800 hover:bg-gray-900 text-white font-medium rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/40"
+                              className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 border border-white/10 bg-gray-800 hover:bg-gray-700 text-white font-medium rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/40"
                             >
+                              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                              </svg>
                               Copy Password
                             </button>
-                          )}
-                        </div>
+                          </div>
+                        )}
                       </div>
                     </div>
                     
@@ -498,7 +548,7 @@ const copyToClipboard = async () => {
                       </p>
                       <button
                         onClick={goToFAQ}
-                        className="inline-flex items-center px-8 py-4 border border-white/10 bg-gray-800 hover:bg-gray-900 text-white font-medium rounded-lg transform hover:scale-[1.02] transition-all duration-300 shadow-md hover:shadow-lg"
+                        className="inline-flex items-center px-8 py-4 border border-white/10 bg-gray-800 hover:bg-gray-700 text-white font-medium rounded-lg transform hover:scale-[1.02] transition-all duration-300 shadow-md hover:shadow-lg"
                       >
                         View Password Security FAQ
                         <svg className="ml-3 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
