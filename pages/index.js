@@ -17,7 +17,7 @@ const GoogleAdUnit = ({ size, placement, responsive = false }) => {
       case 'topBanner':
         return 'ad-top-banner bg-gradient-to-r from-white/5 to-white/10 rounded-xl p-4 mb-8 shadow-lg border border-white/10';
       case 'featuresSidebar':
-        return 'ad-features-sidebar bg-white/5 backdrop-blur-sm rounded-xl p-4 shadow-lg sticky top-8';
+        return 'ad-features-sidebar bg-gray-800 backdrop-blur-sm rounded-xl p-4 shadow-lg sticky top-8';
       case 'toolsInline':
         return 'ad-tools-inline my-12 bg-gradient-to-br from-white/5 to-white/10 rounded-xl p-6 text-center shadow-lg border border-white/10';
       case 'ctaSidebar':
@@ -26,14 +26,14 @@ const GoogleAdUnit = ({ size, placement, responsive = false }) => {
         return 'ad-bottom-banner mt-12 bg-gradient-to-r from-white/5 to-white/10 rounded-xl p-4 shadow-lg border border-white/10';
       case 'leftSidebar':
       case 'rightSidebar':
-        return 'ad-sidebar bg-white/5 backdrop-blur-sm rounded-lg p-3 shadow-md border border-white/10';
+        return 'ad-sidebar bg-gray-800 backdrop-blur-sm rounded-lg p-3 shadow-md border border-white/10';
       case 'leftSidebar2':
       case 'rightSidebar2':
         return 'ad-sidebar-secondary bg-gradient-to-br from-white/5 to-white/10 rounded-lg p-3 shadow-md border border-white/10';
       case 'rightSidebar3':
         return 'ad-sidebar-bottom bg-gradient-to-br from-white/5 to-white/10 rounded-lg p-3 shadow-md border border-white/10';
       default:
-        return 'ad-unit bg-white/5 rounded-lg p-4';
+        return 'ad-unit bg-gray-800 rounded-lg p-4';
     }
   };
   
@@ -42,7 +42,7 @@ const GoogleAdUnit = ({ size, placement, responsive = false }) => {
       <p className="text-xs text-gray-400 uppercase tracking-wide mb-3 font-medium">
         Advertisement
       </p>
-      <div className="bg-white/10 rounded-lg min-h-[90px] flex items-center justify-center border-2 border-dashed border-white/20">
+      <div className="bg-gray-900 rounded-lg min-h-[90px] flex items-center justify-center border-2 border-dashed border-white/20">
         <span className="text-gray-400 text-sm">AdSense {size} - {placement}</span>
       </div>
     </div>
@@ -229,7 +229,7 @@ export default function Home() {
                   />
 
                   {/* Hero Section with Shine Border */}
-                  <div className="shine-border border border-white/10 rounded-xl overflow-hidden bg-white/5 backdrop-blur-sm">
+                  <div className="shine-border border border-white/10 rounded-xl overflow-hidden bg-gray-800 backdrop-blur-sm">
                     <div className="text-center pt-32 pb-16 animate-slide-up">
                       <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight tracking-tight">
                         ToolSuite
@@ -259,7 +259,7 @@ export default function Home() {
                               value: 1,
                             })
                           }
-                          className="inline-flex items-center gap-2 border border-white/10 bg-white/5 hover:bg-white/10 text-white font-medium py-3 px-6 rounded-lg transition duration-200 backdrop-blur-sm"
+                          className="inline-flex items-center gap-2 border border-white/10 bg-gray-800 hover:bg-gray-900 text-white font-medium py-3 px-6 rounded-lg transition duration-200 backdrop-blur-sm"
                         >
                           <span className="text-sm">🔐</span>
                           Try Password Generator
@@ -286,7 +286,7 @@ export default function Home() {
                       className={ADSENSE_ENABLED ? "lg:col-span-3" : "w-full"}
                     >
                       <div className="grid md:grid-cols-3 gap-8">
-                        <div className="shine-border border border-white/10 rounded-xl bg-white/5 backdrop-blur-sm p-6 text-center shadow-lg animate-fade-in-delayed">
+                        <div className="shine-border border border-white/10 rounded-xl bg-gray-800 backdrop-blur-sm p-6 text-center shadow-lg animate-fade-in-delayed">
                           <div className="text-4xl mb-4">🛡️</div>
                           <h3 className="text-xl font-medium text-white mb-2">
                             Privacy First
@@ -297,7 +297,7 @@ export default function Home() {
                           </p>
                         </div>
 
-                        <div className="shine-border border border-white/10 rounded-xl bg-white/5 backdrop-blur-sm p-6 text-center shadow-lg animate-fade-in-delayed">
+                        <div className="shine-border border border-white/10 rounded-xl bg-gray-800 backdrop-blur-sm p-6 text-center shadow-lg animate-fade-in-delayed">
                           <div className="text-4xl mb-4">🔒</div>
                           <h3 className="text-xl font-medium text-white mb-2">
                             Cryptographically Secure
@@ -308,7 +308,7 @@ export default function Home() {
                           </p>
                         </div>
 
-                        <div className="shine-border border border-white/10 rounded-xl bg-white/5 backdrop-blur-sm p-6 text-center shadow-lg animate-fade-in-delayed">
+                        <div className="shine-border border border-white/10 rounded-xl bg-gray-800 backdrop-blur-sm p-6 text-center shadow-lg animate-fade-in-delayed">
                           <div className="text-4xl mb-4">⚡</div>
                           <h3 className="text-xl font-medium text-white mb-2">
                             Lightning Fast
@@ -333,7 +333,7 @@ export default function Home() {
                   </div>
 
                   {/* Available Tools Section */}
-                  <div id="tools-section" className="shine-border border border-white/10 rounded-xl bg-white/5 backdrop-blur-sm shadow-2xl p-8 md:p-12 animate-slide-up">
+                  <div id="tools-section" className="shine-border border border-white/10 rounded-xl bg-gray-800 backdrop-blur-sm shadow-2xl p-8 md:p-12 animate-slide-up">
                     <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-4 tracking-tight">
                       Available Tools
                     </h2>
@@ -363,7 +363,7 @@ export default function Home() {
                               value: 1,
                             })
                           }
-                          className="block shine-border border border-white/10 rounded-xl bg-white/5 backdrop-blur-sm p-6 shadow-lg hover:bg-white/10 transform hover:scale-105 transition-all duration-300"
+                          className="block shine-border border border-white/10 rounded-xl bg-gray-800 backdrop-blur-sm p-6 shadow-lg hover:bg-gray-900 transform hover:scale-105 transition-all duration-300"
                         >
                           <div className="flex items-center space-x-4 mb-4">
                             <div className="text-3xl animate-float">🔐</div>
@@ -404,7 +404,7 @@ export default function Home() {
 
                       {/* Coming Soon Tools */}
                       <div className="tool-card animate-fade-in-delayed group">
-                        <div className="border border-white/10 rounded-xl bg-white/5 backdrop-blur-sm p-6 shadow-lg opacity-60">
+                        <div className="border border-white/10 rounded-xl bg-gray-800 backdrop-blur-sm p-6 shadow-lg opacity-60">
                           <div className="flex items-center space-x-4 mb-4">
                             <div className="text-3xl opacity-50">🧮</div>
                             <div>
@@ -427,7 +427,7 @@ export default function Home() {
                       </div>
 
                       <div className="tool-card animate-fade-in-delayed group">
-                        <div className="border border-white/10 rounded-xl bg-white/5 backdrop-blur-sm p-6 shadow-lg opacity-60">
+                        <div className="border border-white/10 rounded-xl bg-gray-800 backdrop-blur-sm p-6 shadow-lg opacity-60">
                           <div className="flex items-center space-x-4 mb-4">
                             <div className="text-3xl opacity-50">🏠</div>
                             <div>
@@ -450,7 +450,7 @@ export default function Home() {
                       </div>
 
                       <div className="tool-card animate-fade-in-delayed group">
-                        <div className="border border-white/10 rounded-xl bg-white/5 backdrop-blur-sm p-6 shadow-lg opacity-60">
+                        <div className="border border-white/10 rounded-xl bg-gray-800 backdrop-blur-sm p-6 shadow-lg opacity-60">
                           <div className="flex items-center space-x-4 mb-4">
                             <div className="text-3xl opacity-50">📐</div>
                             <div>
@@ -473,7 +473,7 @@ export default function Home() {
                       </div>
 
                       <div className="tool-card animate-fade-in-delayed group">
-                        <div className="border border-white/10 rounded-xl bg-white/5 backdrop-blur-sm p-6 shadow-lg opacity-60">
+                        <div className="border border-white/10 rounded-xl bg-gray-800 backdrop-blur-sm p-6 shadow-lg opacity-60">
                           <div className="flex items-center space-x-4 mb-4">
                             <div className="text-3xl opacity-50">📱</div>
                             <div>
@@ -496,7 +496,7 @@ export default function Home() {
                       </div>
 
                       <div className="tool-card animate-fade-in-delayed group">
-                        <div className="border border-white/10 rounded-xl bg-white/5 backdrop-blur-sm p-6 shadow-lg opacity-60">
+                        <div className="border border-white/10 rounded-xl bg-gray-800 backdrop-blur-sm p-6 shadow-lg opacity-60">
                           <div className="flex items-center space-x-4 mb-4">
                             <div className="text-3xl opacity-50">🎨</div>
                             <div>
@@ -531,7 +531,7 @@ export default function Home() {
                     <div
                       className={ADSENSE_ENABLED ? "lg:col-span-3" : "w-full"}
                     >
-                      <div className="text-center shine-border border border-white/10 rounded-xl bg-white/5 backdrop-blur-sm p-8 shadow-lg relative overflow-hidden animate-fade-in-delayed">
+                      <div className="text-center shine-border border border-white/10 rounded-xl bg-gray-800 backdrop-blur-sm p-8 shadow-lg relative overflow-hidden animate-fade-in-delayed">
                         <div className="relative z-10">
                           <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 tracking-tight">
                             Ready to Get Started?
@@ -568,7 +568,7 @@ export default function Home() {
 
                   {/* Footer */}
                   <footer className="mt-16 pt-8 border-t border-white/10 text-center">
-                    <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 shadow-md border border-white/10">
+                    <div className="bg-gray-800 backdrop-blur-sm rounded-xl p-6 shadow-md border border-white/10">
                       <p className="text-gray-400 mb-2">
                         <strong className="text-white">ToolSuite</strong> -
                         Professional utility tools for everyone

@@ -17,21 +17,21 @@ const GoogleAdUnit = ({ size, placement, responsive = false }) => {
       case 'topBanner':
         return 'ad-top-banner bg-gradient-to-r from-white/5 to-white/10 rounded-xl p-4 mb-8 shadow-lg border border-white/10';
       case 'resultsSidebar':
-        return 'ad-results-sidebar bg-white/5 backdrop-blur-sm rounded-xl p-4 shadow-lg';
+        return 'ad-results-sidebar bg-gray-800 backdrop-blur-sm rounded-xl p-4 shadow-lg';
       case 'contentInline':
         return 'ad-content-inline my-12 bg-gradient-to-br from-white/5 to-white/10 rounded-xl p-6 text-center shadow-lg border border-white/10';
       case 'bottomBanner':
         return 'ad-bottom-banner mt-12 bg-gradient-to-r from-white/5 to-white/10 rounded-xl p-4 shadow-lg border border-white/10';
       case 'leftSidebar':
       case 'rightSidebar':
-        return 'ad-sidebar bg-white/5 backdrop-blur-sm rounded-lg p-3 shadow-md border border-white/10';
+        return 'ad-sidebar bg-gray-800 backdrop-blur-sm rounded-lg p-3 shadow-md border border-white/10';
       case 'leftSidebar2':
       case 'rightSidebar2':
         return 'ad-sidebar-secondary bg-gradient-to-br from-white/5 to-white/10 rounded-lg p-3 shadow-md border border-white/10';
       case 'rightSidebar3':
         return 'ad-sidebar-bottom bg-gradient-to-br from-white/5 to-white/10 rounded-lg p-3 shadow-md border border-white/10';
       default:
-        return 'ad-unit bg-white/5 rounded-lg p-4';
+        return 'ad-unit bg-gray-800 rounded-lg p-4';
     }
   };
   
@@ -40,7 +40,7 @@ const GoogleAdUnit = ({ size, placement, responsive = false }) => {
       <p className="text-xs text-gray-400 uppercase tracking-wide mb-3 font-medium">
         Advertisement
       </p>
-      <div className="bg-white/10 rounded-lg min-h-[90px] flex items-center justify-center border-2 border-dashed border-white/20">
+      <div className="bg-gray-900 rounded-lg min-h-[90px] flex items-center justify-center border-2 border-dashed border-white/20">
         <span className="text-gray-400 text-sm">AdSense {size} - {placement}</span>
       </div>
     </div>
@@ -294,7 +294,7 @@ const copyToClipboard = async () => {
                   <GoogleAdUnit size="728x90" placement="topBanner" responsive />
                   
                   {/* Enhanced Quick Usage Guide */}
-                  <div className="shine-border border border-white/10 rounded-xl bg-white/5 backdrop-blur-sm p-6 shadow-lg relative overflow-hidden animate-slide-up">
+                  <div className="shine-border border border-white/10 rounded-xl bg-gray-800 backdrop-blur-sm p-6 shadow-lg relative overflow-hidden animate-slide-up">
                     <div className="relative z-10">
                       <h2 className="text-xl font-medium text-white mb-4 flex items-center space-x-2">
                         <span className="text-gray-400">→</span>
@@ -302,19 +302,19 @@ const copyToClipboard = async () => {
                       </h2>
                       <ol className="space-y-3 text-gray-400">
                         <li className="flex items-start space-x-3">
-                          <span className="bg-white/10 text-gray-300 text-xs font-medium px-2 py-1 rounded mt-0.5">1</span>
+                          <span className="bg-gray-900 text-gray-300 text-xs font-medium px-2 py-1 rounded mt-0.5">1</span>
                           <span>Adjust password length with the slider below</span>
                         </li>
                         <li className="flex items-start space-x-3">
-                          <span className="bg-white/10 text-gray-300 text-xs font-medium px-2 py-1 rounded mt-0.5">2</span>
+                          <span className="bg-gray-900 text-gray-300 text-xs font-medium px-2 py-1 rounded mt-0.5">2</span>
                           <span>Select character types you want to include</span>
                         </li>
                         <li className="flex items-start space-x-3">
-                          <span className="bg-white/10 text-gray-300 text-xs font-medium px-2 py-1 rounded mt-0.5">3</span>
+                          <span className="bg-gray-900 text-gray-300 text-xs font-medium px-2 py-1 rounded mt-0.5">3</span>
                           <span>Click "Generate Password" for instant results</span>
                         </li>
                         <li className="flex items-start space-x-3">
-                          <span className="bg-white/10 text-gray-300 text-xs font-medium px-2 py-1 rounded mt-0.5">4</span>
+                          <span className="bg-gray-900 text-gray-300 text-xs font-medium px-2 py-1 rounded mt-0.5">4</span>
                           <span>Copy your secure password to use immediately</span>
                         </li>
                       </ol>
@@ -324,14 +324,14 @@ const copyToClipboard = async () => {
                   {/* Enhanced Main Tool Card with conditional sidebar */}
                   <div className={ADSENSE_ENABLED ? "grid lg:grid-cols-4 gap-8" : "max-w-4xl mx-auto"}>
                     <div className={ADSENSE_ENABLED ? "lg:col-span-3" : "w-full"}>
-                      <div className="shine-border border border-white/10 rounded-xl bg-white/5 backdrop-blur-sm shadow-2xl p-8 md:p-12 animate-slide-up">
+                      <div className="shine-border border border-white/10 rounded-xl bg-gray-800 backdrop-blur-sm shadow-2xl p-8 md:p-12 animate-slide-up">
                         <h1 className="text-4xl md:text-5xl font-bold text-white text-center mb-8 leading-tight tracking-tight">
                           Password Generator
                         </h1>
 
                         {/* Enhanced Password Display */}
                         <div className="mb-8">
-                          <div className={`shine-border border border-white/10 bg-white/5 backdrop-blur-sm rounded-xl p-6 font-mono text-lg text-center min-h-[80px] flex items-center justify-center break-all transition-all duration-300 text-white ${password ? 'border-white/20' : ''}`}>
+                          <div className={`shine-border border border-white/10 bg-gray-800 backdrop-blur-sm rounded-xl p-6 font-mono text-lg text-center min-h-[80px] flex items-center justify-center break-all transition-all duration-300 text-white ${password ? 'border-white/20' : ''}`}>
                             {password || (
                               <span className="text-gray-400">
                                 Your secure password will appear here
@@ -342,7 +342,7 @@ const copyToClipboard = async () => {
                           {/* Feedback Messages */}
                           {feedback && (
                             <div className="mt-3 text-center">
-                              <span className="inline-flex items-center px-4 py-2 rounded-lg text-sm font-medium bg-white/10 text-white border border-white/20">
+                              <span className="inline-flex items-center px-4 py-2 rounded-lg text-sm font-medium bg-gray-900 text-white border border-white/20">
                                 {feedback}
                               </span>
                             </div>
@@ -360,7 +360,7 @@ const copyToClipboard = async () => {
                             max="128"
                             value={length}
                             onChange={(e) => setLength(Number(e.target.value))}
-                            className="w-full h-3 bg-white/10 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/40 transition-all duration-200"
+                            className="w-full h-3 bg-gray-900 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/40 transition-all duration-200"
                             style={{
                               background: `linear-gradient(to right, #ffffff 0%, #ffffff ${((length - 8) / (128 - 8)) * 100}%, rgba(255,255,255,0.1) ${((length - 8) / (128 - 8)) * 100}%, rgba(255,255,255,0.1) 100%)`
                             }}
@@ -377,7 +377,7 @@ const copyToClipboard = async () => {
                             Include Characters:
                           </label>
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <label className="flex items-center p-4 rounded-lg border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all duration-200 cursor-pointer">
+                            <label className="flex items-center p-4 rounded-lg border border-white/10 hover:border-white/20 hover:bg-gray-800 transition-all duration-200 cursor-pointer">
                               <input
                                 type="checkbox"
                                 checked={includeUppercase}
@@ -387,7 +387,7 @@ const copyToClipboard = async () => {
                               <span className="ml-3 text-lg text-gray-400 font-normal">Uppercase (A-Z)</span>
                             </label>
 
-                            <label className="flex items-center p-4 rounded-lg border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all duration-200 cursor-pointer">
+                            <label className="flex items-center p-4 rounded-lg border border-white/10 hover:border-white/20 hover:bg-gray-800 transition-all duration-200 cursor-pointer">
                               <input
                                 type="checkbox"
                                 checked={includeLowercase}
@@ -397,7 +397,7 @@ const copyToClipboard = async () => {
                               <span className="ml-3 text-lg text-gray-400 font-normal">Lowercase (a-z)</span>
                             </label>
 
-                            <label className="flex items-center p-4 rounded-lg border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all duration-200 cursor-pointer">
+                            <label className="flex items-center p-4 rounded-lg border border-white/10 hover:border-white/20 hover:bg-gray-800 transition-all duration-200 cursor-pointer">
                               <input
                                 type="checkbox"
                                 checked={includeNumbers}
@@ -407,7 +407,7 @@ const copyToClipboard = async () => {
                               <span className="ml-3 text-lg text-gray-400 font-normal">Numbers (0-9)</span>
                             </label>
 
-                            <label className="flex items-center p-4 rounded-lg border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all duration-200 cursor-pointer">
+                            <label className="flex items-center p-4 rounded-lg border border-white/10 hover:border-white/20 hover:bg-gray-800 transition-all duration-200 cursor-pointer">
                               <input
                                 type="checkbox"
                                 checked={includeSymbols}
@@ -418,7 +418,7 @@ const copyToClipboard = async () => {
                             </label>
                           </div>
                           
-                          <label className="flex items-center p-4 mt-4 rounded-lg border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all duration-200 cursor-pointer">
+                          <label className="flex items-center p-4 mt-4 rounded-lg border border-white/10 hover:border-white/20 hover:bg-gray-800 transition-all duration-200 cursor-pointer">
                             <input
                               type="checkbox"
                               checked={excludeAmbiguous}
@@ -452,7 +452,7 @@ const copyToClipboard = async () => {
                           {password && (
                             <button
                               onClick={copyToClipboard}
-                              className="flex-1 sm:flex-none inline-flex items-center justify-center px-8 py-4 border border-white/10 bg-white/5 hover:bg-white/10 text-white font-medium rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/40"
+                              className="flex-1 sm:flex-none inline-flex items-center justify-center px-8 py-4 border border-white/10 bg-gray-800 hover:bg-gray-900 text-white font-medium rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/40"
                             >
                               Copy Password
                             </button>
@@ -472,7 +472,7 @@ const copyToClipboard = async () => {
                   </div>
 
                   {/* Enhanced Tool Description Section */}
-                  <div className="shine-border border border-white/10 rounded-xl bg-white/5 backdrop-blur-sm shadow-lg p-8 md:p-12 animate-slide-up">
+                  <div className="shine-border border border-white/10 rounded-xl bg-gray-800 backdrop-blur-sm shadow-lg p-8 md:p-12 animate-slide-up">
                     <h2 className="text-3xl font-bold text-white mb-8 text-center tracking-tight">
                       About Our Password Generator
                     </h2>
@@ -498,7 +498,7 @@ const copyToClipboard = async () => {
                       </p>
                       <button
                         onClick={goToFAQ}
-                        className="inline-flex items-center px-8 py-4 border border-white/10 bg-white/5 hover:bg-white/10 text-white font-medium rounded-lg transform hover:scale-[1.02] transition-all duration-300 shadow-md hover:shadow-lg"
+                        className="inline-flex items-center px-8 py-4 border border-white/10 bg-gray-800 hover:bg-gray-900 text-white font-medium rounded-lg transform hover:scale-[1.02] transition-all duration-300 shadow-md hover:shadow-lg"
                       >
                         View Password Security FAQ
                         <svg className="ml-3 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -514,7 +514,7 @@ const copyToClipboard = async () => {
                   {/* Enhanced Security & Best Practices Sections */}
                   <div className="grid lg:grid-cols-2 gap-8">
                     {/* Enhanced Security Section */}
-                    <div className="shine-border border border-white/10 rounded-xl bg-white/5 backdrop-blur-sm p-8 shadow-lg relative overflow-hidden animate-slide-up">
+                    <div className="shine-border border border-white/10 rounded-xl bg-gray-800 backdrop-blur-sm p-8 shadow-lg relative overflow-hidden animate-slide-up">
                       <div className="relative z-10">
                         <h3 className="text-2xl font-bold text-white mb-6 flex items-center space-x-3 tracking-tight">
                           <span className="text-gray-400">•</span>
@@ -522,15 +522,15 @@ const copyToClipboard = async () => {
                         </h3>
                         <div className="text-gray-400 space-y-4">
                           <div className="grid gap-4">
-                            <div className="bg-white/5 rounded-lg p-4 border border-white/10">
+                            <div className="bg-gray-800 rounded-lg p-4 border border-white/10">
                               <h4 className="font-medium text-white mb-2">Cryptographic Security</h4>
                               <p className="text-sm text-gray-400">Uses crypto.getRandomValues() for military-grade randomness</p>
                             </div>
-                            <div className="bg-white/5 rounded-lg p-4 border border-white/10">
+                            <div className="bg-gray-800 rounded-lg p-4 border border-white/10">
                               <h4 className="font-medium text-white mb-2">Zero Data Storage</h4>
                               <p className="text-sm text-gray-400">All passwords generated locally - never stored or transmitted</p>
                             </div>
-                            <div className="bg-white/5 rounded-lg p-4 border border-white/10">
+                            <div className="bg-gray-800 rounded-lg p-4 border border-white/10">
                               <h4 className="font-medium text-white mb-2">Privacy Guarantee</h4>
                               <p className="text-sm text-gray-400">No cookies, tracking, or personal information required</p>
                             </div>
@@ -540,7 +540,7 @@ const copyToClipboard = async () => {
                     </div>
 
                     {/* Enhanced Best Practices Section */}
-                    <div className="shine-border border border-white/10 rounded-xl bg-white/5 backdrop-blur-sm p-8 shadow-lg relative overflow-hidden animate-slide-up">
+                    <div className="shine-border border border-white/10 rounded-xl bg-gray-800 backdrop-blur-sm p-8 shadow-lg relative overflow-hidden animate-slide-up">
                       <div className="relative z-10">
                         <h3 className="text-2xl font-bold text-white mb-6 flex items-center space-x-3 tracking-tight">
                           <span className="text-gray-400">•</span>
@@ -549,19 +549,19 @@ const copyToClipboard = async () => {
                         <div className="text-gray-400 space-y-4">
                           <div className="space-y-3">
                             <div className="flex items-start space-x-3">
-                              <span className="bg-white/10 text-gray-300 text-xs font-medium px-2 py-1 rounded mt-1">1</span>
+                              <span className="bg-gray-900 text-gray-300 text-xs font-medium px-2 py-1 rounded mt-1">1</span>
                               <span><strong className="text-white">Use a Password Manager:</strong> Store passwords in Bitwarden, 1Password, or LastPass</span>
                             </div>
                             <div className="flex items-start space-x-3">
-                              <span className="bg-white/10 text-gray-300 text-xs font-medium px-2 py-1 rounded mt-1">2</span>
+                              <span className="bg-gray-900 text-gray-300 text-xs font-medium px-2 py-1 rounded mt-1">2</span>
                               <span><strong className="text-white">Enable 2FA:</strong> Add two-factor authentication wherever available</span>
                             </div>
                             <div className="flex items-start space-x-3">
-                              <span className="bg-white/10 text-gray-300 text-xs font-medium px-2 py-1 rounded mt-1">3</span>
+                              <span className="bg-gray-900 text-gray-300 text-xs font-medium px-2 py-1 rounded mt-1">3</span>
                               <span><strong className="text-white">Unique Passwords:</strong> Never reuse passwords across accounts</span>
                             </div>
                             <div className="flex items-start space-x-3">
-                              <span className="bg-white/10 text-gray-300 text-xs font-medium px-2 py-1 rounded mt-1">4</span>
+                              <span className="bg-gray-900 text-gray-300 text-xs font-medium px-2 py-1 rounded mt-1">4</span>
                               <span><strong className="text-white">Regular Updates:</strong> Change critical passwords annually</span>
                             </div>
                           </div>
